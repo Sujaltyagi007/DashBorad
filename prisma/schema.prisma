@@ -1,0 +1,28 @@
+generator client {
+  provider        = "prisma-client-js"
+  output          = "../app/generated/prisma"
+  previewFeatures = ["relationJoins"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./Dev.db"
+}
+
+model email {
+  id            Int        @id @default(autoincrement())
+  name          String?
+  email         String?
+  subject       String?
+  Date          DateTime   @updatedAt
+  emailCategory String?
+  emailBody     emailBody?
+}
+
+model emailBody {
+  id        Int     @id @default(autoincrement())
+  message   email   @relation(fields: [messageId], references: [id])
+  messageId Int     @unique
+  heading   String?
+  content   String?
+}
