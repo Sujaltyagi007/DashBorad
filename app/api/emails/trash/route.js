@@ -1,8 +1,22 @@
-import { NextRequest } from "next/server";
-
-export async function GET(request) {
-    const response = await fetch("http://localhost:3000/api/emails/trash", {
-        method: "GET",
+import { NextResponse } from "next/server";
+import { PrismaClient } from "@/app/generated/prisma/client.js";
+const prisma = new PrismaClient();
+async function GET() {
+  try {
+    const mail = await prisma.email.findMany({
+      where: {
+        emailCategory: "trash",
+      },
+      include: {
+        emailBody: true,
+      },
     });
-    return response;
+    if (mail.length === 0) return NextResponse.json("No Response Found...!");
+    return NextResponse.json({ mail });
+  } catch (err) {
+    console.error(err);
+    return NextResponse.json({
+      err: "Error fetching emails",
+    });
+  }
 }

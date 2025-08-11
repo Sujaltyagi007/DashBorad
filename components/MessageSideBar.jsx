@@ -1,11 +1,11 @@
 "use client";
 import * as React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Input } from "./ui/input";
 import MessageDemoPreview from "./MessageDemoPreview";
-import { useState } from "react";
+import { useMessageType } from "@/context/MessageTypeContext";
 // const data = {
 //   user: {
 //     name: "shadcn",
@@ -189,20 +189,21 @@ import { useState } from "react";
 //   ],
 // };
 export function MessageSideBar() {
-  useEffect(() => {
-    fetch("/api/emails/message")
-      .then((res) => res.json())
-      .then((data) => setMails(data));
-  }, []);
-  const [mails, setMails] = useState(null);
+  // useEffect(() => {
+  //   fetch("/api/emails/message")
+  //     .then((res) => res.json())
+  //     .then((data) => setMails(data.mail));
+  // }, []);
+  // const [mails, setMails] = useState(null);
   const [IsMail, setIsMail] = useState(null);
+  const { activeMessageType, mailData } = useMessageType();
   return (
     <div className="flex h-full ">
       <div className=" w-[25%] h-[100%] overflow-y-auto scrollbar-hidden border-r ">
         <div className="flex flex-col w-full items-center p-2 gap-1 h-[15%] border-b ">
           <div className="flex justify-between items-center w-full ">
             <div className="text-foreground text-base font-medium ">
-              Messages
+              {activeMessageType}
             </div>
             <Label className="flex items-center gap-2 text-sm ">
               <span>Unreads</span>
@@ -215,42 +216,40 @@ export function MessageSideBar() {
             className="mt-2 w-[100%] flex mx-auto "
           />
         </div>
-        <div className="flex flex-col w-full items-center h-[85%] overflow-y-scroll no-scrollbar ">
-          {mails === null
-            ? Array.from({ length: 10 }).map((_, index) => (
-                <div
-                  key={index}
-                  className="hover:bg-sidebar-accent hover:text-sidebar-accent-foreground flex flex-col gap-2 border-b p-3 text-sm leading-tight last:border-b-0"
-                >
-                  <div className="flex w-fit gap-2">
-                    <span>Loading...</span>
-                    <span className="ml-auto text-xs">Loading...</span>
-                  </div>
-                  <span className="font-medium">Loading...</span>
-                  <span className="line-clamp-2 w-fit text-xs whitespace-break-spaces">
-                    Loading...
-                  </span>
+        <div className="flex flex-col w-full items-center h-[85%] overflow-y-scroll no-scrollbar">
+          {mailData === null ? (
+            Array.from({ length: 10 }).map((_, index) => (
+              <div
+                key={index}
+                className="hover:bg-sidebar-accent hover:text-sidebar-accent-foreground flex justify-center border-b w-full py-7 text-sm leading-tight last:border-b-0"
+              >
+                Loading<span className="animate-pulse">.</span>
+                <span className="animate-pulse">.</span>
+                <span className="animate-pulse">.</span>
+              </div>
+            ))
+          ) : mailData === "No Response Found...!" ? (
+            <div className="flex justify-center items-center h-full text-sm text-gray-500">
+              No Response Found...!
+            </div>
+          ) : (
+            mailData.mail.map((mail, index) => (
+              <div
+                onClick={() => (setIsMail(mail), console.log(mail))}
+                key={index}
+                className="hover:bg-sidebar-accent hover:text-sidebar-accent-foreground flex flex-col gap-2 border-b p-3 text-sm leading-tight last:border-b-0 cursor-pointer"
+              >
+                <div className="flex w-full gap-2">
+                  <span>{mail.name}</span>
+                  <span className="ml-auto text-xs">{mail.date}</span>
                 </div>
-              ))
-            : mails.mail.map((mail, index) => (
-                <div
-                  onClick={() => (setIsMail(mail), console.log(mail))}
-                  key={index}
-                  className="hover:bg-sidebar-accent hover:text-sidebar-accent-foreground flex flex-col gap-2 border-b p-3 text-sm leading-tight last:border-b-0 cursor-pointer "
-                >
-                  {console.log(mail.emailBody )}
-                  <div className="flex w-fit gap-2">
-                    <span>{mail.name}</span>
-                    <span className="ml-auto text-xs">{mail.date}</span>
-                  </div>
-                  <span className="font-medium line-clamp-1 ">
-                    {mail.subject}
-                  </span>
-                  <span className="line-clamp-2 w-fit text-xs whitespace-break-spaces">
-                    {mail.emailBody.content}
-                  </span>
-                </div>
-              ))}
+                <span className="font-medium line-clamp-1">{mail.subject}</span>
+                <span className="line-clamp-2 w-fit text-xs whitespace-break-spaces">
+                  {mail.emailBody?.content}
+                </span>
+              </div>
+            ))
+          )}
         </div>
       </div>
       <div className=" w-[75%] h-[100%] overflow-y-auto no-scrollbar ">

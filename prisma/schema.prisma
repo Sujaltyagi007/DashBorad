@@ -20,9 +20,8 @@ model email {
 }
 
 model emailBody {
-  id        Int     @id @default(autoincrement())
-  message   email   @relation(fields: [messageId], references: [id])
-  messageId Int     @unique
   heading   String?
   content   String?
+  message   email?  @relation(fields: [messageid], references: [id])
+  messageid Int     @unique
 }

@@ -5,10 +5,14 @@ const prisma = new PrismaClient();
 export async function GET() {
   try {
     const mail = await prisma.email.findMany({
+      where: {
+        emailCategory: "message",
+      },
       include: {
         emailBody: true,
-      }
+      },
     });
+    if (mail.length === 0) return NextResponse.json("No Response Found...!");
     return NextResponse.json({ mail });
   } catch (err) {
     console.error(err);

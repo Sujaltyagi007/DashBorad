@@ -1,5 +1,6 @@
 import React from "react";
 const MessageDemoPreview = ({ item }) => {
+  console.log(item);
   const Name = item.name;
   const firstLetter = Name.charAt(0);
   return (
@@ -7,7 +8,7 @@ const MessageDemoPreview = ({ item }) => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6">
         <h1 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">
-          {item.subject}
+          {item.emailBody.heading}
         </h1>
       </div>
       {/* Sender Info */}
@@ -30,10 +31,10 @@ const MessageDemoPreview = ({ item }) => {
 
       {/* Email Body */}
       <article className="prose max-w-full prose-sm sm:prose lg:prose-lg dark:prose-invert text-gray-900 dark:text-gray-50 whitespace-pre-line break-words">
-        Dear User,
+        Dear Msty,
         <br />
         <br />
-        {item.subject}
+        {item.emailBody.content}
         <br />
         <br />
         Thank you

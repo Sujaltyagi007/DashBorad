@@ -968,36 +968,6 @@ export namespace Prisma {
    */
 
 
-  /**
-   * Count Type EmailCountOutputType
-   */
-
-  export type EmailCountOutputType = {
-    emailBody: number
-  }
-
-  export type EmailCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    emailBody?: boolean | EmailCountOutputTypeCountEmailBodyArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * EmailCountOutputType without action
-   */
-  export type EmailCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the EmailCountOutputType
-     */
-    select?: EmailCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * EmailCountOutputType without action
-   */
-  export type EmailCountOutputTypeCountEmailBodyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: emailBodyWhereInput
-  }
-
 
   /**
    * Models
@@ -1210,7 +1180,6 @@ export namespace Prisma {
     Date?: boolean
     emailCategory?: boolean
     emailBody?: boolean | email$emailBodyArgs<ExtArgs>
-    _count?: boolean | EmailCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["email"]>
 
   export type emailSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1243,7 +1212,6 @@ export namespace Prisma {
   export type emailOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "subject" | "Date" | "emailCategory", ExtArgs["result"]["email"]>
   export type emailInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     emailBody?: boolean | email$emailBodyArgs<ExtArgs>
-    _count?: boolean | EmailCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type emailIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
   export type emailIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1251,7 +1219,7 @@ export namespace Prisma {
   export type $emailPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "email"
     objects: {
-      emailBody: Prisma.$emailBodyPayload<ExtArgs>[]
+      emailBody: Prisma.$emailBodyPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -1654,7 +1622,7 @@ export namespace Prisma {
    */
   export interface Prisma__emailClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    emailBody<T extends email$emailBodyArgs<ExtArgs> = {}>(args?: Subset<T, email$emailBodyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$emailBodyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    emailBody<T extends email$emailBodyArgs<ExtArgs> = {}>(args?: Subset<T, email$emailBodyArgs<ExtArgs>>): Prisma__emailBodyClient<$Result.GetResult<Prisma.$emailBodyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2092,11 +2060,6 @@ export namespace Prisma {
      */
     include?: emailBodyInclude<ExtArgs> | null
     where?: emailBodyWhereInput
-    orderBy?: emailBodyOrderByWithRelationInput | emailBodyOrderByWithRelationInput[]
-    cursor?: emailBodyWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: EmailBodyScalarFieldEnum | EmailBodyScalarFieldEnum[]
   }
 
   /**
@@ -2131,67 +2094,57 @@ export namespace Prisma {
   }
 
   export type EmailBodyAvgAggregateOutputType = {
-    id: number | null
-    messageId: number | null
+    messageid: number | null
   }
 
   export type EmailBodySumAggregateOutputType = {
-    id: number | null
-    messageId: number | null
+    messageid: number | null
   }
 
   export type EmailBodyMinAggregateOutputType = {
-    id: number | null
-    messageId: number | null
     heading: string | null
     content: string | null
+    messageid: number | null
   }
 
   export type EmailBodyMaxAggregateOutputType = {
-    id: number | null
-    messageId: number | null
     heading: string | null
     content: string | null
+    messageid: number | null
   }
 
   export type EmailBodyCountAggregateOutputType = {
-    id: number
-    messageId: number
     heading: number
     content: number
+    messageid: number
     _all: number
   }
 
 
   export type EmailBodyAvgAggregateInputType = {
-    id?: true
-    messageId?: true
+    messageid?: true
   }
 
   export type EmailBodySumAggregateInputType = {
-    id?: true
-    messageId?: true
+    messageid?: true
   }
 
   export type EmailBodyMinAggregateInputType = {
-    id?: true
-    messageId?: true
     heading?: true
     content?: true
+    messageid?: true
   }
 
   export type EmailBodyMaxAggregateInputType = {
-    id?: true
-    messageId?: true
     heading?: true
     content?: true
+    messageid?: true
   }
 
   export type EmailBodyCountAggregateInputType = {
-    id?: true
-    messageId?: true
     heading?: true
     content?: true
+    messageid?: true
     _all?: true
   }
 
@@ -2282,10 +2235,9 @@ export namespace Prisma {
   }
 
   export type EmailBodyGroupByOutputType = {
-    id: number
-    messageId: number
     heading: string | null
     content: string | null
+    messageid: number
     _count: EmailBodyCountAggregateOutputType | null
     _avg: EmailBodyAvgAggregateOutputType | null
     _sum: EmailBodySumAggregateOutputType | null
@@ -2308,57 +2260,52 @@ export namespace Prisma {
 
 
   export type emailBodySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    messageId?: boolean
     heading?: boolean
     content?: boolean
-    message?: boolean | emailDefaultArgs<ExtArgs>
+    messageid?: boolean
+    message?: boolean | emailBody$messageArgs<ExtArgs>
   }, ExtArgs["result"]["emailBody"]>
 
   export type emailBodySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    messageId?: boolean
     heading?: boolean
     content?: boolean
-    message?: boolean | emailDefaultArgs<ExtArgs>
+    messageid?: boolean
+    message?: boolean | emailBody$messageArgs<ExtArgs>
   }, ExtArgs["result"]["emailBody"]>
 
   export type emailBodySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    messageId?: boolean
     heading?: boolean
     content?: boolean
-    message?: boolean | emailDefaultArgs<ExtArgs>
+    messageid?: boolean
+    message?: boolean | emailBody$messageArgs<ExtArgs>
   }, ExtArgs["result"]["emailBody"]>
 
   export type emailBodySelectScalar = {
-    id?: boolean
-    messageId?: boolean
     heading?: boolean
     content?: boolean
+    messageid?: boolean
   }
 
-  export type emailBodyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "messageId" | "heading" | "content", ExtArgs["result"]["emailBody"]>
+  export type emailBodyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"heading" | "content" | "messageid", ExtArgs["result"]["emailBody"]>
   export type emailBodyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    message?: boolean | emailDefaultArgs<ExtArgs>
+    message?: boolean | emailBody$messageArgs<ExtArgs>
   }
   export type emailBodyIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    message?: boolean | emailDefaultArgs<ExtArgs>
+    message?: boolean | emailBody$messageArgs<ExtArgs>
   }
   export type emailBodyIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    message?: boolean | emailDefaultArgs<ExtArgs>
+    message?: boolean | emailBody$messageArgs<ExtArgs>
   }
 
   export type $emailBodyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "emailBody"
     objects: {
-      message: Prisma.$emailPayload<ExtArgs>
+      message: Prisma.$emailPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
-      messageId: number
       heading: string | null
       content: string | null
+      messageid: number
     }, ExtArgs["result"]["emailBody"]>
     composites: {}
   }
@@ -2442,8 +2389,8 @@ export namespace Prisma {
      * // Get first 10 EmailBodies
      * const emailBodies = await prisma.emailBody.findMany({ take: 10 })
      * 
-     * // Only select the `id`
-     * const emailBodyWithIdOnly = await prisma.emailBody.findMany({ select: { id: true } })
+     * // Only select the `heading`
+     * const emailBodyWithHeadingOnly = await prisma.emailBody.findMany({ select: { heading: true } })
      * 
      */
     findMany<T extends emailBodyFindManyArgs>(args?: SelectSubset<T, emailBodyFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$emailBodyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -2487,9 +2434,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Create many EmailBodies and only return the `id`
-     * const emailBodyWithIdOnly = await prisma.emailBody.createManyAndReturn({
-     *   select: { id: true },
+     * // Create many EmailBodies and only return the `heading`
+     * const emailBodyWithHeadingOnly = await prisma.emailBody.createManyAndReturn({
+     *   select: { heading: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -2578,9 +2525,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more EmailBodies and only return the `id`
-     * const emailBodyWithIdOnly = await prisma.emailBody.updateManyAndReturn({
-     *   select: { id: true },
+     * // Update zero or more EmailBodies and only return the `heading`
+     * const emailBodyWithHeadingOnly = await prisma.emailBody.updateManyAndReturn({
+     *   select: { heading: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2753,7 +2700,7 @@ export namespace Prisma {
    */
   export interface Prisma__emailBodyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    message<T extends emailDefaultArgs<ExtArgs> = {}>(args?: Subset<T, emailDefaultArgs<ExtArgs>>): Prisma__emailClient<$Result.GetResult<Prisma.$emailPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    message<T extends emailBody$messageArgs<ExtArgs> = {}>(args?: Subset<T, emailBody$messageArgs<ExtArgs>>): Prisma__emailClient<$Result.GetResult<Prisma.$emailPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2783,10 +2730,9 @@ export namespace Prisma {
    * Fields of the emailBody model
    */
   interface emailBodyFieldRefs {
-    readonly id: FieldRef<"emailBody", 'Int'>
-    readonly messageId: FieldRef<"emailBody", 'Int'>
     readonly heading: FieldRef<"emailBody", 'String'>
     readonly content: FieldRef<"emailBody", 'String'>
+    readonly messageid: FieldRef<"emailBody", 'Int'>
   }
     
 
@@ -3181,6 +3127,25 @@ export namespace Prisma {
   }
 
   /**
+   * emailBody.message
+   */
+  export type emailBody$messageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the email
+     */
+    select?: emailSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the email
+     */
+    omit?: emailOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: emailInclude<ExtArgs> | null
+    where?: emailWhereInput
+  }
+
+  /**
    * emailBody without action
    */
   export type emailBodyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3223,10 +3188,9 @@ export namespace Prisma {
 
 
   export const EmailBodyScalarFieldEnum: {
-    id: 'id',
-    messageId: 'messageId',
     heading: 'heading',
-    content: 'content'
+    content: 'content',
+    messageid: 'messageid'
   };
 
   export type EmailBodyScalarFieldEnum = (typeof EmailBodyScalarFieldEnum)[keyof typeof EmailBodyScalarFieldEnum]
@@ -3294,7 +3258,7 @@ export namespace Prisma {
     subject?: StringNullableFilter<"email"> | string | null
     Date?: DateTimeFilter<"email"> | Date | string
     emailCategory?: StringNullableFilter<"email"> | string | null
-    emailBody?: EmailBodyListRelationFilter
+    emailBody?: XOR<EmailBodyNullableScalarRelationFilter, emailBodyWhereInput> | null
   }
 
   export type emailOrderByWithRelationInput = {
@@ -3304,7 +3268,7 @@ export namespace Prisma {
     subject?: SortOrderInput | SortOrder
     Date?: SortOrder
     emailCategory?: SortOrderInput | SortOrder
-    emailBody?: emailBodyOrderByRelationAggregateInput
+    emailBody?: emailBodyOrderByWithRelationInput
   }
 
   export type emailWhereUniqueInput = Prisma.AtLeast<{
@@ -3317,7 +3281,7 @@ export namespace Prisma {
     subject?: StringNullableFilter<"email"> | string | null
     Date?: DateTimeFilter<"email"> | Date | string
     emailCategory?: StringNullableFilter<"email"> | string | null
-    emailBody?: EmailBodyListRelationFilter
+    emailBody?: XOR<EmailBodyNullableScalarRelationFilter, emailBodyWhereInput> | null
   }, "id">
 
   export type emailOrderByWithAggregationInput = {
@@ -3350,37 +3314,33 @@ export namespace Prisma {
     AND?: emailBodyWhereInput | emailBodyWhereInput[]
     OR?: emailBodyWhereInput[]
     NOT?: emailBodyWhereInput | emailBodyWhereInput[]
-    id?: IntFilter<"emailBody"> | number
-    messageId?: IntFilter<"emailBody"> | number
     heading?: StringNullableFilter<"emailBody"> | string | null
     content?: StringNullableFilter<"emailBody"> | string | null
-    message?: XOR<EmailScalarRelationFilter, emailWhereInput>
+    messageid?: IntFilter<"emailBody"> | number
+    message?: XOR<EmailNullableScalarRelationFilter, emailWhereInput> | null
   }
 
   export type emailBodyOrderByWithRelationInput = {
-    id?: SortOrder
-    messageId?: SortOrder
     heading?: SortOrderInput | SortOrder
     content?: SortOrderInput | SortOrder
+    messageid?: SortOrder
     message?: emailOrderByWithRelationInput
   }
 
   export type emailBodyWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    messageid?: number
     AND?: emailBodyWhereInput | emailBodyWhereInput[]
     OR?: emailBodyWhereInput[]
     NOT?: emailBodyWhereInput | emailBodyWhereInput[]
-    messageId?: IntFilter<"emailBody"> | number
     heading?: StringNullableFilter<"emailBody"> | string | null
     content?: StringNullableFilter<"emailBody"> | string | null
-    message?: XOR<EmailScalarRelationFilter, emailWhereInput>
-  }, "id">
+    message?: XOR<EmailNullableScalarRelationFilter, emailWhereInput> | null
+  }, "messageid">
 
   export type emailBodyOrderByWithAggregationInput = {
-    id?: SortOrder
-    messageId?: SortOrder
     heading?: SortOrderInput | SortOrder
     content?: SortOrderInput | SortOrder
+    messageid?: SortOrder
     _count?: emailBodyCountOrderByAggregateInput
     _avg?: emailBodyAvgOrderByAggregateInput
     _max?: emailBodyMaxOrderByAggregateInput
@@ -3392,10 +3352,9 @@ export namespace Prisma {
     AND?: emailBodyScalarWhereWithAggregatesInput | emailBodyScalarWhereWithAggregatesInput[]
     OR?: emailBodyScalarWhereWithAggregatesInput[]
     NOT?: emailBodyScalarWhereWithAggregatesInput | emailBodyScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"emailBody"> | number
-    messageId?: IntWithAggregatesFilter<"emailBody"> | number
     heading?: StringNullableWithAggregatesFilter<"emailBody"> | string | null
     content?: StringNullableWithAggregatesFilter<"emailBody"> | string | null
+    messageid?: IntWithAggregatesFilter<"emailBody"> | number
   }
 
   export type emailCreateInput = {
@@ -3404,7 +3363,7 @@ export namespace Prisma {
     subject?: string | null
     Date?: Date | string
     emailCategory?: string | null
-    emailBody?: emailBodyCreateNestedManyWithoutMessageInput
+    emailBody?: emailBodyCreateNestedOneWithoutMessageInput
   }
 
   export type emailUncheckedCreateInput = {
@@ -3414,7 +3373,7 @@ export namespace Prisma {
     subject?: string | null
     Date?: Date | string
     emailCategory?: string | null
-    emailBody?: emailBodyUncheckedCreateNestedManyWithoutMessageInput
+    emailBody?: emailBodyUncheckedCreateNestedOneWithoutMessageInput
   }
 
   export type emailUpdateInput = {
@@ -3423,7 +3382,7 @@ export namespace Prisma {
     subject?: NullableStringFieldUpdateOperationsInput | string | null
     Date?: DateTimeFieldUpdateOperationsInput | Date | string
     emailCategory?: NullableStringFieldUpdateOperationsInput | string | null
-    emailBody?: emailBodyUpdateManyWithoutMessageNestedInput
+    emailBody?: emailBodyUpdateOneWithoutMessageNestedInput
   }
 
   export type emailUncheckedUpdateInput = {
@@ -3433,7 +3392,7 @@ export namespace Prisma {
     subject?: NullableStringFieldUpdateOperationsInput | string | null
     Date?: DateTimeFieldUpdateOperationsInput | Date | string
     emailCategory?: NullableStringFieldUpdateOperationsInput | string | null
-    emailBody?: emailBodyUncheckedUpdateManyWithoutMessageNestedInput
+    emailBody?: emailBodyUncheckedUpdateOneWithoutMessageNestedInput
   }
 
   export type emailCreateManyInput = {
@@ -3465,34 +3424,31 @@ export namespace Prisma {
   export type emailBodyCreateInput = {
     heading?: string | null
     content?: string | null
-    message: emailCreateNestedOneWithoutEmailBodyInput
+    message?: emailCreateNestedOneWithoutEmailBodyInput
   }
 
   export type emailBodyUncheckedCreateInput = {
-    id?: number
-    messageId: number
     heading?: string | null
     content?: string | null
+    messageid: number
   }
 
   export type emailBodyUpdateInput = {
     heading?: NullableStringFieldUpdateOperationsInput | string | null
     content?: NullableStringFieldUpdateOperationsInput | string | null
-    message?: emailUpdateOneRequiredWithoutEmailBodyNestedInput
+    message?: emailUpdateOneWithoutEmailBodyNestedInput
   }
 
   export type emailBodyUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    messageId?: IntFieldUpdateOperationsInput | number
     heading?: NullableStringFieldUpdateOperationsInput | string | null
     content?: NullableStringFieldUpdateOperationsInput | string | null
+    messageid?: IntFieldUpdateOperationsInput | number
   }
 
   export type emailBodyCreateManyInput = {
-    id?: number
-    messageId: number
     heading?: string | null
     content?: string | null
+    messageid: number
   }
 
   export type emailBodyUpdateManyMutationInput = {
@@ -3501,10 +3457,9 @@ export namespace Prisma {
   }
 
   export type emailBodyUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    messageId?: IntFieldUpdateOperationsInput | number
     heading?: NullableStringFieldUpdateOperationsInput | string | null
     content?: NullableStringFieldUpdateOperationsInput | string | null
+    messageid?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -3543,19 +3498,14 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type EmailBodyListRelationFilter = {
-    every?: emailBodyWhereInput
-    some?: emailBodyWhereInput
-    none?: emailBodyWhereInput
+  export type EmailBodyNullableScalarRelationFilter = {
+    is?: emailBodyWhereInput | null
+    isNot?: emailBodyWhereInput | null
   }
 
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
-  }
-
-  export type emailBodyOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type emailCountOrderByAggregateInput = {
@@ -3640,54 +3590,47 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type EmailScalarRelationFilter = {
-    is?: emailWhereInput
-    isNot?: emailWhereInput
+  export type EmailNullableScalarRelationFilter = {
+    is?: emailWhereInput | null
+    isNot?: emailWhereInput | null
   }
 
   export type emailBodyCountOrderByAggregateInput = {
-    id?: SortOrder
-    messageId?: SortOrder
     heading?: SortOrder
     content?: SortOrder
+    messageid?: SortOrder
   }
 
   export type emailBodyAvgOrderByAggregateInput = {
-    id?: SortOrder
-    messageId?: SortOrder
+    messageid?: SortOrder
   }
 
   export type emailBodyMaxOrderByAggregateInput = {
-    id?: SortOrder
-    messageId?: SortOrder
     heading?: SortOrder
     content?: SortOrder
+    messageid?: SortOrder
   }
 
   export type emailBodyMinOrderByAggregateInput = {
-    id?: SortOrder
-    messageId?: SortOrder
     heading?: SortOrder
     content?: SortOrder
+    messageid?: SortOrder
   }
 
   export type emailBodySumOrderByAggregateInput = {
-    id?: SortOrder
-    messageId?: SortOrder
+    messageid?: SortOrder
   }
 
-  export type emailBodyCreateNestedManyWithoutMessageInput = {
-    create?: XOR<emailBodyCreateWithoutMessageInput, emailBodyUncheckedCreateWithoutMessageInput> | emailBodyCreateWithoutMessageInput[] | emailBodyUncheckedCreateWithoutMessageInput[]
-    connectOrCreate?: emailBodyCreateOrConnectWithoutMessageInput | emailBodyCreateOrConnectWithoutMessageInput[]
-    createMany?: emailBodyCreateManyMessageInputEnvelope
-    connect?: emailBodyWhereUniqueInput | emailBodyWhereUniqueInput[]
+  export type emailBodyCreateNestedOneWithoutMessageInput = {
+    create?: XOR<emailBodyCreateWithoutMessageInput, emailBodyUncheckedCreateWithoutMessageInput>
+    connectOrCreate?: emailBodyCreateOrConnectWithoutMessageInput
+    connect?: emailBodyWhereUniqueInput
   }
 
-  export type emailBodyUncheckedCreateNestedManyWithoutMessageInput = {
-    create?: XOR<emailBodyCreateWithoutMessageInput, emailBodyUncheckedCreateWithoutMessageInput> | emailBodyCreateWithoutMessageInput[] | emailBodyUncheckedCreateWithoutMessageInput[]
-    connectOrCreate?: emailBodyCreateOrConnectWithoutMessageInput | emailBodyCreateOrConnectWithoutMessageInput[]
-    createMany?: emailBodyCreateManyMessageInputEnvelope
-    connect?: emailBodyWhereUniqueInput | emailBodyWhereUniqueInput[]
+  export type emailBodyUncheckedCreateNestedOneWithoutMessageInput = {
+    create?: XOR<emailBodyCreateWithoutMessageInput, emailBodyUncheckedCreateWithoutMessageInput>
+    connectOrCreate?: emailBodyCreateOrConnectWithoutMessageInput
+    connect?: emailBodyWhereUniqueInput
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -3698,18 +3641,14 @@ export namespace Prisma {
     set?: Date | string
   }
 
-  export type emailBodyUpdateManyWithoutMessageNestedInput = {
-    create?: XOR<emailBodyCreateWithoutMessageInput, emailBodyUncheckedCreateWithoutMessageInput> | emailBodyCreateWithoutMessageInput[] | emailBodyUncheckedCreateWithoutMessageInput[]
-    connectOrCreate?: emailBodyCreateOrConnectWithoutMessageInput | emailBodyCreateOrConnectWithoutMessageInput[]
-    upsert?: emailBodyUpsertWithWhereUniqueWithoutMessageInput | emailBodyUpsertWithWhereUniqueWithoutMessageInput[]
-    createMany?: emailBodyCreateManyMessageInputEnvelope
-    set?: emailBodyWhereUniqueInput | emailBodyWhereUniqueInput[]
-    disconnect?: emailBodyWhereUniqueInput | emailBodyWhereUniqueInput[]
-    delete?: emailBodyWhereUniqueInput | emailBodyWhereUniqueInput[]
-    connect?: emailBodyWhereUniqueInput | emailBodyWhereUniqueInput[]
-    update?: emailBodyUpdateWithWhereUniqueWithoutMessageInput | emailBodyUpdateWithWhereUniqueWithoutMessageInput[]
-    updateMany?: emailBodyUpdateManyWithWhereWithoutMessageInput | emailBodyUpdateManyWithWhereWithoutMessageInput[]
-    deleteMany?: emailBodyScalarWhereInput | emailBodyScalarWhereInput[]
+  export type emailBodyUpdateOneWithoutMessageNestedInput = {
+    create?: XOR<emailBodyCreateWithoutMessageInput, emailBodyUncheckedCreateWithoutMessageInput>
+    connectOrCreate?: emailBodyCreateOrConnectWithoutMessageInput
+    upsert?: emailBodyUpsertWithoutMessageInput
+    disconnect?: emailBodyWhereInput | boolean
+    delete?: emailBodyWhereInput | boolean
+    connect?: emailBodyWhereUniqueInput
+    update?: XOR<XOR<emailBodyUpdateToOneWithWhereWithoutMessageInput, emailBodyUpdateWithoutMessageInput>, emailBodyUncheckedUpdateWithoutMessageInput>
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -3720,18 +3659,14 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type emailBodyUncheckedUpdateManyWithoutMessageNestedInput = {
-    create?: XOR<emailBodyCreateWithoutMessageInput, emailBodyUncheckedCreateWithoutMessageInput> | emailBodyCreateWithoutMessageInput[] | emailBodyUncheckedCreateWithoutMessageInput[]
-    connectOrCreate?: emailBodyCreateOrConnectWithoutMessageInput | emailBodyCreateOrConnectWithoutMessageInput[]
-    upsert?: emailBodyUpsertWithWhereUniqueWithoutMessageInput | emailBodyUpsertWithWhereUniqueWithoutMessageInput[]
-    createMany?: emailBodyCreateManyMessageInputEnvelope
-    set?: emailBodyWhereUniqueInput | emailBodyWhereUniqueInput[]
-    disconnect?: emailBodyWhereUniqueInput | emailBodyWhereUniqueInput[]
-    delete?: emailBodyWhereUniqueInput | emailBodyWhereUniqueInput[]
-    connect?: emailBodyWhereUniqueInput | emailBodyWhereUniqueInput[]
-    update?: emailBodyUpdateWithWhereUniqueWithoutMessageInput | emailBodyUpdateWithWhereUniqueWithoutMessageInput[]
-    updateMany?: emailBodyUpdateManyWithWhereWithoutMessageInput | emailBodyUpdateManyWithWhereWithoutMessageInput[]
-    deleteMany?: emailBodyScalarWhereInput | emailBodyScalarWhereInput[]
+  export type emailBodyUncheckedUpdateOneWithoutMessageNestedInput = {
+    create?: XOR<emailBodyCreateWithoutMessageInput, emailBodyUncheckedCreateWithoutMessageInput>
+    connectOrCreate?: emailBodyCreateOrConnectWithoutMessageInput
+    upsert?: emailBodyUpsertWithoutMessageInput
+    disconnect?: emailBodyWhereInput | boolean
+    delete?: emailBodyWhereInput | boolean
+    connect?: emailBodyWhereUniqueInput
+    update?: XOR<XOR<emailBodyUpdateToOneWithWhereWithoutMessageInput, emailBodyUpdateWithoutMessageInput>, emailBodyUncheckedUpdateWithoutMessageInput>
   }
 
   export type emailCreateNestedOneWithoutEmailBodyInput = {
@@ -3740,10 +3675,12 @@ export namespace Prisma {
     connect?: emailWhereUniqueInput
   }
 
-  export type emailUpdateOneRequiredWithoutEmailBodyNestedInput = {
+  export type emailUpdateOneWithoutEmailBodyNestedInput = {
     create?: XOR<emailCreateWithoutEmailBodyInput, emailUncheckedCreateWithoutEmailBodyInput>
     connectOrCreate?: emailCreateOrConnectWithoutEmailBodyInput
     upsert?: emailUpsertWithoutEmailBodyInput
+    disconnect?: emailWhereInput | boolean
+    delete?: emailWhereInput | boolean
     connect?: emailWhereUniqueInput
     update?: XOR<XOR<emailUpdateToOneWithWhereWithoutEmailBodyInput, emailUpdateWithoutEmailBodyInput>, emailUncheckedUpdateWithoutEmailBodyInput>
   }
@@ -3859,7 +3796,6 @@ export namespace Prisma {
   }
 
   export type emailBodyUncheckedCreateWithoutMessageInput = {
-    id?: number
     heading?: string | null
     content?: string | null
   }
@@ -3869,34 +3805,25 @@ export namespace Prisma {
     create: XOR<emailBodyCreateWithoutMessageInput, emailBodyUncheckedCreateWithoutMessageInput>
   }
 
-  export type emailBodyCreateManyMessageInputEnvelope = {
-    data: emailBodyCreateManyMessageInput | emailBodyCreateManyMessageInput[]
-  }
-
-  export type emailBodyUpsertWithWhereUniqueWithoutMessageInput = {
-    where: emailBodyWhereUniqueInput
+  export type emailBodyUpsertWithoutMessageInput = {
     update: XOR<emailBodyUpdateWithoutMessageInput, emailBodyUncheckedUpdateWithoutMessageInput>
     create: XOR<emailBodyCreateWithoutMessageInput, emailBodyUncheckedCreateWithoutMessageInput>
+    where?: emailBodyWhereInput
   }
 
-  export type emailBodyUpdateWithWhereUniqueWithoutMessageInput = {
-    where: emailBodyWhereUniqueInput
+  export type emailBodyUpdateToOneWithWhereWithoutMessageInput = {
+    where?: emailBodyWhereInput
     data: XOR<emailBodyUpdateWithoutMessageInput, emailBodyUncheckedUpdateWithoutMessageInput>
   }
 
-  export type emailBodyUpdateManyWithWhereWithoutMessageInput = {
-    where: emailBodyScalarWhereInput
-    data: XOR<emailBodyUpdateManyMutationInput, emailBodyUncheckedUpdateManyWithoutMessageInput>
+  export type emailBodyUpdateWithoutMessageInput = {
+    heading?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type emailBodyScalarWhereInput = {
-    AND?: emailBodyScalarWhereInput | emailBodyScalarWhereInput[]
-    OR?: emailBodyScalarWhereInput[]
-    NOT?: emailBodyScalarWhereInput | emailBodyScalarWhereInput[]
-    id?: IntFilter<"emailBody"> | number
-    messageId?: IntFilter<"emailBody"> | number
-    heading?: StringNullableFilter<"emailBody"> | string | null
-    content?: StringNullableFilter<"emailBody"> | string | null
+  export type emailBodyUncheckedUpdateWithoutMessageInput = {
+    heading?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type emailCreateWithoutEmailBodyInput = {
@@ -3947,29 +3874,6 @@ export namespace Prisma {
     subject?: NullableStringFieldUpdateOperationsInput | string | null
     Date?: DateTimeFieldUpdateOperationsInput | Date | string
     emailCategory?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type emailBodyCreateManyMessageInput = {
-    id?: number
-    heading?: string | null
-    content?: string | null
-  }
-
-  export type emailBodyUpdateWithoutMessageInput = {
-    heading?: NullableStringFieldUpdateOperationsInput | string | null
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type emailBodyUncheckedUpdateWithoutMessageInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    heading?: NullableStringFieldUpdateOperationsInput | string | null
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type emailBodyUncheckedUpdateManyWithoutMessageInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    heading?: NullableStringFieldUpdateOperationsInput | string | null
-    content?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

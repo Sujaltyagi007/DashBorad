@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { TabProvider } from "@/context/TabContext";
+import { MessageTypeProvider } from "@/context/MessageTypeContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,17 +21,19 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning >
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`} >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
-          disableTransitionOnChange
-        >
-          <TabProvider>{children}</TabProvider>
+          disableTransitionOnChange >
+          <TabProvider>
+            <MessageTypeProvider>
+              {children}
+            </MessageTypeProvider>
+          </TabProvider>
         </ThemeProvider>
       </body>
     </html>

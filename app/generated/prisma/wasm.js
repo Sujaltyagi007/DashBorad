@@ -127,10 +127,9 @@ exports.Prisma.EmailScalarFieldEnum = {
 };
 
 exports.Prisma.EmailBodyScalarFieldEnum = {
-  id: 'id',
-  messageId: 'messageId',
   heading: 'heading',
-  content: 'content'
+  content: 'content',
+  messageid: 'messageid'
 };
 
 exports.Prisma.SortOrder = {
