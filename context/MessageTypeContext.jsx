@@ -6,7 +6,7 @@ export const MessageTypeProvider = (props) => {
   const [mailData, setMailData] = useState(null);
   const endPoint = activeMessageType.charAt(0).toLowerCase()+activeMessageType.slice(1).toLowerCase();
   useEffect(() => {
-    fetch(`http://localhost:3000/api/emails/${endPoint}`)
+    fetch(`/api/emails/${endPoint}`)
       .then((res) => res.type === String ? res.text(): res.json())
       .then((data) => setMailData(data));
   }, [activeMessageType]);
