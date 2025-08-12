@@ -1,12 +1,8 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
-  provider = "prisma-client-js"
-  output   = "../app/generated/prisma"
+  provider        = "prisma-client-js"
+  output          = "../app/generated/prisma"
+  previewFeatures = ["relationJoins"]
+  binaryTargets   = ["native", "rhel-openssl-1.0.x"]
 }
 
 datasource db {
@@ -15,19 +11,18 @@ datasource db {
 }
 
 model email {
-  id            Int         @id @default(autoincrement())
+  id            Int        @id @default(autoincrement())
   name          String?
   email         String?
   subject       String?
-  Date          DateTime    @updatedAt
+  Date          DateTime   @updatedAt
   emailCategory String?
-  emailBody     emailBody[]
+  emailBody     emailBody?
 }
 
 model emailBody {
-  id        Int     @id @default(autoincrement())
-  message   email   @relation(fields: [messageId], references: [id])
-  messageId Int
   heading   String?
   content   String?
+  message   email?  @relation(fields: [messageid], references: [id])
+  messageid Int     @unique
 }

@@ -1,34 +1,24 @@
-import Image from "next/image";
-import { Playwrite_AU_QLD } from "next/font/google";
 import { GiInterleavedArrows } from "react-icons/gi";
+import { Playwrite_AU_QLD } from "next/font/google";
 import Link from "next/link";
 const play = Playwrite_AU_QLD({
   subsets: ["latin"],
   weight: ["400"],
 });
-export default function Home() {
+
+export default function page() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert w-full h-full"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <Link href="/dashboard" className=" w-full">
-          <button
-            className={` text-center w-full border p-4 rounded-2xl cursor-pointer hover:bg-[#fff] hover:text-[#000] transition-colors duration-500 ease-in-out gap-4 flex justify-center items-center ${play.className} `}
-          >
-            Let's Get Started
-            <span className=" -rotate-45 text-2xl">
-              <GiInterleavedArrows />
-            </span>
-          </button>
+    <section className=" w-full text-black h-dvh flex flex-col gap-10 justify-center items-center">
+      <div
+        className={` hover:bg-black hover:text-white ${play.className} transition-colors duration-500 ease-in-out rounded-4xl px-10 py-6 flex justify-center items-center gap-4 text-[1.2rem] `}
+      >
+        <Link href="/dashboard">
+          {`let's get started`}
+          <span className="text-3xl -rotate-45">
+            <GiInterleavedArrows />
+          </span>
         </Link>
-      </main>
-    </div>
+      </div>
+    </section>
   );
 }
