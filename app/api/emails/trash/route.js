@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@/app/generated/prisma/client.js";
 const prisma = new PrismaClient();
-async function GET() {
+export async function GET() {
   try {
     const mail = await prisma.email.findMany({
       where: {

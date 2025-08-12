@@ -6,8 +6,7 @@ import { Switch } from "@/components/ui/switch";
 import { Input } from "./ui/input";
 import MessageDemoPreview from "./MessageDemoPreview";
 import { useMessageType } from "@/context/MessageTypeContext";
-// const data = {
-//   user: {
+
 //     name: "shadcn",
 //     email: "m@example.com",
 //     avatar: "/avatars/shadcn.jpg",
@@ -189,12 +188,6 @@ import { useMessageType } from "@/context/MessageTypeContext";
 //   ],
 // };
 export function MessageSideBar() {
-  // useEffect(() => {
-  //   fetch("/api/emails/message")
-  //     .then((res) => res.json())
-  //     .then((data) => setMails(data.mail));
-  // }, []);
-  // const [mails, setMails] = useState(null);
   const [IsMail, setIsMail] = useState(null);
   const { activeMessageType, mailData } = useMessageType();
   return (

@@ -7,7 +7,7 @@ export const MessageTypeProvider = (props) => {
   const endPoint = activeMessageType.charAt(0).toLowerCase()+activeMessageType.slice(1).toLowerCase();
   useEffect(() => {
     fetch(`http://localhost:3000/api/emails/${endPoint}`)
-      .then((res) => res.json())
+      .then((res) => res.type === String ? res.text(): res.json())
       .then((data) => setMailData(data));
   }, [activeMessageType]);
   return (

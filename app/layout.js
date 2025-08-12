@@ -21,18 +21,21 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning >
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`} >
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
-          disableTransitionOnChange >
+          disableTransitionOnChange
+        >
           <TabProvider>
-            <MessageTypeProvider>
-              {children}
-            </MessageTypeProvider>
+            <MessageTypeProvider>{children}</MessageTypeProvider>
           </TabProvider>
         </ThemeProvider>
       </body>

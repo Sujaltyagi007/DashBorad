@@ -1,5 +1,4 @@
 "use client";
-import { useState, React } from "react";
 import {
   IconAppWindowFilled,
   IconMessageFilled,
@@ -22,9 +21,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { useContext } from "react";
-import { TabContext } from "@/context/TabContext";
-import { MessageTypeContext } from "@/context/MessageTypeContext";
+import { useTab } from "@/context/TabContext";
+import { useMessageType } from "@/context/MessageTypeContext";
 const data = [
   {
     name: "Message",
@@ -49,9 +47,10 @@ const data = [
 ];
 
 export function NavMain({ items }) {
-  const { activeTab, setActiveTab } = useContext(TabContext);
-  const { activeMessageType, setActiveMessageType } = useContext(MessageTypeContext);
-  const Icon = data[data.findIndex((item) => item.name === activeMessageType)].component;
+  const { activeTab, setActiveTab } = useTab();
+  const { activeMessageType, setActiveMessageType } = useMessageType();
+  const Icon =
+    data[data.findIndex((item) => item.name === activeMessageType)].component;
   return (
     <SidebarGroup>
       <SidebarGroupContent className="flex flex-col gap-2">
@@ -80,6 +79,7 @@ export function NavMain({ items }) {
                       <MenubarItem
                         onClick={() => {
                           setActiveMessageType(item.name);
+                          {activeTab !== "Message" && setActiveTab("Message")}
                           console.log(activeMessageType);
                         }}
                         key={index}

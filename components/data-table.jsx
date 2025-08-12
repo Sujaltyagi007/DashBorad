@@ -45,7 +45,6 @@ import {
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
 import { toast } from "sonner"
 import { z } from "zod"
-
 import { useIsMobile } from "@/hooks/use-mobile"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -104,14 +103,12 @@ export const schema = z.object({
   reviewer: z.string(),
 })
 
-// Create a separate component for the drag handle
 function DragHandle({
   id
 }) {
   const { attributes, listeners } = useSortable({
     id,
   })
-
   return (
     <Button
       {...attributes}
@@ -124,7 +121,6 @@ function DragHandle({
     </Button>
   );
 }
-
 const columns = [
   {
     id: "drag",
@@ -239,11 +235,9 @@ const columns = [
     header: "Reviewer",
     cell: ({ row }) => {
       const isAssigned = row.original.reviewer !== "Assign reviewer"
-
       if (isAssigned) {
         return row.original.reviewer
       }
-
       return (
         <>
           <Label htmlFor={`${row.original.id}-reviewer`} className="sr-only">
@@ -590,11 +584,8 @@ const chartConfig = {
   }
 }
 
-function TableCellViewer({
-  item
-}) {
+function TableCellViewer({item}){
   const isMobile = useIsMobile()
-
   return (
     <Drawer direction={isMobile ? "bottom" : "right"}>
       <DrawerTrigger asChild>
@@ -648,7 +639,7 @@ function TableCellViewer({
               <Separator />
               <div className="grid gap-2">
                 <div className="flex gap-2 leading-none font-medium">
-                  Trending up by 5.2% this month{" "}
+                  Trending up by 5.2% this month
                   <IconTrendingUp className="size-4" />
                 </div>
                 <div className="text-muted-foreground">
