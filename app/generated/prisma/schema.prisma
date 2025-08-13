@@ -1,13 +1,11 @@
 generator client {
-  provider        = "prisma-client-js"
-  output          = "../app/generated/prisma"
-  previewFeatures = ["relationJoins"]
-  binaryTargets   = ["native", "rhel-openssl-1.0.x"]
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./Dev.db"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model email {

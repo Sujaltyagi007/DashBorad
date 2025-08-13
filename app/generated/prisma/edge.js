@@ -35,12 +35,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.13.0
- * Query Engine version: 361e86d0ea4987e9f53a565309b3eed797a6bcbd
+ * Prisma Client JS version: 6.14.0
+ * Query Engine version: 717184b7b35ea05dfa71a3236b7af656013e1e49
  */
 Prisma.prismaVersion = {
-  client: "6.13.0",
-  engine: "361e86d0ea4987e9f53a565309b3eed797a6bcbd"
+  client: "6.14.0",
+  engine: "717184b7b35ea05dfa71a3236b7af656013e1e49"
 }
 
 Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
@@ -86,6 +86,9 @@ Prisma.NullTypes = {
  * Enums
  */
 exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
+  ReadUncommitted: 'ReadUncommitted',
+  ReadCommitted: 'ReadCommitted',
+  RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
 });
 
@@ -107,6 +110,11 @@ exports.Prisma.EmailBodyScalarFieldEnum = {
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
 };
 
 exports.Prisma.NullsOrder = {
@@ -141,15 +149,9 @@ const config = {
         "fromEnvVar": null,
         "value": "windows",
         "native": true
-      },
-      {
-        "fromEnvVar": null,
-        "value": "rhel-openssl-1.0.x"
       }
     ],
-    "previewFeatures": [
-      "relationJoins"
-    ],
+    "previewFeatures": [],
     "sourceFilePath": "C:\\Users\\admin\\Desktop\\Practise\\Backend\\deshboard-demo\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
@@ -158,23 +160,23 @@ const config = {
     "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../../../prisma",
-  "clientVersion": "6.13.0",
-  "engineVersion": "361e86d0ea4987e9f53a565309b3eed797a6bcbd",
+  "clientVersion": "6.14.0",
+  "engineVersion": "717184b7b35ea05dfa71a3236b7af656013e1e49",
   "datasourceNames": [
     "db"
   ],
-  "activeProvider": "sqlite",
+  "activeProvider": "postgresql",
   "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
-        "fromEnvVar": null,
-        "value": "file:./Dev.db"
+        "fromEnvVar": "DATABASE_URL",
+        "value": null
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider        = \"prisma-client-js\"\n  output          = \"../app/generated/prisma\"\n  previewFeatures = [\"relationJoins\"]\n  binaryTargets   = [\"native\", \"rhel-openssl-1.0.x\"]\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = \"file:./Dev.db\"\n}\n\nmodel email {\n  id            Int        @id @default(autoincrement())\n  name          String?\n  email         String?\n  subject       String?\n  Date          DateTime   @updatedAt\n  emailCategory String?\n  emailBody     emailBody?\n}\n\nmodel emailBody {\n  heading   String?\n  content   String?\n  message   email?  @relation(fields: [messageid], references: [id])\n  messageid Int     @unique\n}\n",
-  "inlineSchemaHash": "5194277fabf30772d60bc4c9f6334018b8283f7764a6249d2b0b42d7f26972c7",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../app/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel email {\n  id            Int        @id @default(autoincrement())\n  name          String?\n  email         String?\n  subject       String?\n  Date          DateTime   @updatedAt\n  emailCategory String?\n  emailBody     emailBody?\n}\n\nmodel emailBody {\n  heading   String?\n  content   String?\n  message   email?  @relation(fields: [messageid], references: [id])\n  messageid Int     @unique\n}\n",
+  "inlineSchemaHash": "2a3474bfbcddeb3486c4afcd2ec0f8a9153142a5e20a25f8e135cbccd957ae19",
   "copyEngine": true
 }
 config.dirname = '/'
@@ -185,7 +187,9 @@ config.engineWasm = undefined
 config.compilerWasm = undefined
 
 config.injectableEdgeEnv = () => ({
-  parsed: {}
+  parsed: {
+    DATABASE_URL: typeof globalThis !== 'undefined' && globalThis['DATABASE_URL'] || typeof process !== 'undefined' && process.env && process.env.DATABASE_URL || undefined
+  }
 })
 
 if (typeof globalThis !== 'undefined' && globalThis['DEBUG'] || typeof process !== 'undefined' && process.env && process.env.DEBUG || undefined) {
