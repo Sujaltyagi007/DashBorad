@@ -167,6 +167,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -177,7 +178,7 @@ const config = {
   },
   "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../app/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel email {\n  id            Int        @id @default(autoincrement())\n  name          String?\n  email         String?\n  subject       String?\n  Date          DateTime   @updatedAt\n  emailCategory String?\n  emailBody     emailBody?\n}\n\nmodel emailBody {\n  heading   String?\n  content   String?\n  message   email?  @relation(fields: [messageid], references: [id])\n  messageid Int     @unique\n}\n",
   "inlineSchemaHash": "2c8e8cd0b44b5c39bd533f4ae5831e9bbc663aa9df883cb2ea190389bd003a09",
-  "copyEngine": false
+  "copyEngine": true
 }
 
 const fs = require('fs')
@@ -214,3 +215,9 @@ const PrismaClient = getPrismaClient(config)
 exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
+// file annotations for bundling tools to include these files
+path.join(__dirname, "query_engine-windows.dll.node");
+path.join(process.cwd(), "app/generated/prisma/query_engine-windows.dll.node")
+// file annotations for bundling tools to include these files
+path.join(__dirname, "schema.prisma");
+path.join(process.cwd(), "app/generated/prisma/schema.prisma")
