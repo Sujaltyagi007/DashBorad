@@ -138,7 +138,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\admin\\Desktop\\Practise\\Backend\\deshboard-demo\\app\\generated\\prisma",
+      "value": "C:\\Users\\sujal\\Downloads\\Practise\\DashBorad\\app\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -152,7 +152,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\admin\\Desktop\\Practise\\Backend\\deshboard-demo\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\sujal\\Downloads\\Practise\\DashBorad\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
