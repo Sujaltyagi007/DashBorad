@@ -45,7 +45,7 @@ import {
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
 import { toast } from "sonner"
 import { z } from "zod"
-import { useIsMobile } from "@/hooks/use-mobile"
+import { useIsTab } from "@/hooks/useTab"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
@@ -585,9 +585,9 @@ const chartConfig = {
 }
 
 function TableCellViewer({item}){
-  const isMobile = useIsMobile()
+  const isTab = useIsTab()
   return (
-    <Drawer direction={isMobile ? "bottom" : "right"}>
+    <Drawer direction={isTab ? "bottom" : "right"}>
       <DrawerTrigger asChild>
         <Button variant="link" className="text-foreground w-fit px-0 text-left">
           {item.header}
@@ -601,7 +601,7 @@ function TableCellViewer({item}){
           </DrawerDescription>
         </DrawerHeader>
         <div className="flex flex-col gap-4 overflow-y-auto px-4 text-sm">
-          {!isMobile && (
+          {!isTab && (
             <>
               <ChartContainer config={chartConfig}>
                 <AreaChart

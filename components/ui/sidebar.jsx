@@ -4,7 +4,7 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
 import { PanelLeftIcon } from "lucide-react";
 
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useIsTab } from "@/hooks/useTab";
 import { cn } from "@/app/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -51,7 +51,7 @@ function SidebarProvider({
   children,
   ...props
 }) {
-  const isMobile = useIsMobile();
+  const isTab = useIsTab();
   const [openMobile, setOpenMobile] = React.useState(false);
 
   // This is the internal state of the sidebar.
@@ -75,8 +75,8 @@ function SidebarProvider({
 
   // Helper to toggle the sidebar.
   const toggleSidebar = React.useCallback(() => {
-    return isMobile ? setOpenMobile((open) => !open) : setOpen((open) => !open);
-  }, [isMobile, setOpen, setOpenMobile]);
+    return isTab ? setOpenMobile((open) => !open) : setOpen((open) => !open);
+  }, [isTab, setOpen, setOpenMobile]);
 
   // Adds a keyboard shortcut to toggle the sidebar.
   React.useEffect(() => {
@@ -103,12 +103,12 @@ function SidebarProvider({
       state,
       open,
       setOpen,
-      isMobile,
+      isTab,
       openMobile,
       setOpenMobile,
       toggleSidebar,
     }),
-    [state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar]
+    [state, open, setOpen, isTab, openMobile, setOpenMobile, toggleSidebar]
   );
 
   return (
@@ -142,7 +142,7 @@ function Sidebar({
   children,
   ...props
 }) {
-  const { isMobile, state, openMobile, setOpenMobile } = useSidebar();
+  const { isTab, state, openMobile, setOpenMobile } = useSidebar();
 
   if (collapsible === "none") {
     return (
@@ -159,7 +159,7 @@ function Sidebar({
     );
   }
 
-  if (isMobile) {
+  if (isTab) {
     return (
       <Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
         <SheetContent
@@ -461,7 +461,7 @@ function SidebarMenuButton({
   ...props
 }) {
   const Comp = asChild ? Slot : "button";
-  const { isMobile, state } = useSidebar();
+  const { isTab, state } = useSidebar();
 
   const button = (
     <Comp
@@ -490,7 +490,7 @@ function SidebarMenuButton({
       <TooltipContent
         side="right"
         align="center"
-        hidden={state !== "collapsed" || isMobile}
+        hidden={state !== "collapsed" || isTab}
         {...tooltip}
       />
     </Tooltip>

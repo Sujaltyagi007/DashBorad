@@ -15,7 +15,7 @@ export default function page() {
         width={20}
         height={20}
         alt={"Image"}
-        className=" w-[15vw]"
+        className=" w-[15vw] "
       />
       <Link href="/dashboard">
         <div

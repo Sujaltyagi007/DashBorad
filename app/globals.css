@@ -124,3 +124,7 @@
     scrollbar-width: none;
   }
 }
+
+body{
+  background-color: aquamarine;
+}
