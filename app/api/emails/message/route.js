@@ -1,6 +1,6 @@
 "use server";
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@/app/generated/prisma/client.js";
+import { PrismaClient } from "@prisma/client";
 export async function GET() {
   const prisma = new PrismaClient(); 
   try {
