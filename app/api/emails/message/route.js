@@ -1,9 +1,8 @@
 "use server";
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@/app/generated/prisma/client.js";
-import { withAccelerate } from "@prisma/extension-accelerate";
 export async function GET() {
-  const prisma = new PrismaClient().$extends(withAccelerate()); 
+  const prisma = new PrismaClient(); 
   try {
     const mail = await prisma.email.findMany({
       where: {
