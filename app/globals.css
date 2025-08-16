@@ -125,11 +125,9 @@
   }
 }
 
-<<<<<<< Updated upstream
 body{
   background-color: aquamarine;
-=======
+}
 @theme{
   --breakpoint-mob: 425px;
->>>>>>> Stashed changes
 }
