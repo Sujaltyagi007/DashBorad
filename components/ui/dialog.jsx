@@ -2,6 +2,10 @@
 import * as React from "react"
 import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { XIcon } from "lucide-react"
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 import { cn } from "@/app/utils"
 
 function Dialog({
