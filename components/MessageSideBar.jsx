@@ -28,7 +28,7 @@ export function MessageSideBar() {
           isMobile ? " w-[100%]" : "w-[25%]"
         } overflow-y-auto scrollbar-hidden border-r`}
       >
-        <div className="flex flex-col w-full h-[calc(100-80)vh] items-center p-2 gap-1 border-b">
+        <div className="flex flex-col w-full items-center p-2 gap-1 border-b">
           <div className="flex justify-between  items-center w-full px-[3%]">
             <div className="text-foreground text-base font-medium">
               {activeMessageType}
@@ -44,7 +44,7 @@ export function MessageSideBar() {
             className="mt-2 w-[100%] flex mx-auto"
           />
         </div>
-        <div className="flex flex-col w-full h-[75vh] items-center overflow-y-scroll no-scrollbar">
+        <div className="flex flex-col w-full h-[calc(100%-6rem)] items-center overflow-y-scroll no-scrollbar">
           <MailList
             mailData={mailData}
             isMobile={isMobile}
