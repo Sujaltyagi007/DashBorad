@@ -1,8 +1,8 @@
 "use server";
 import { NextResponse } from "next/server";
-import { PrismaClient } from "../../../generated/prisma/client.js"; // Adjust the import path as necessary
+import { PrismaClient } from "@/app/generated/prisma/client.js";
 export async function GET() {
-  const prisma = new PrismaClient(); 
+  const prisma = new PrismaClient() 
   try {
     const mail = await prisma.email.findMany({
       where: {
